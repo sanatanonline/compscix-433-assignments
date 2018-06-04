@@ -10,8 +10,8 @@ print(df)
 print(type(df))
 
 # Plot the relationship graphs
-# plt.scatter(df.Num, df.Drate)
-# plt.show()
+plt.scatter(df.Num, df.Drate)
+plt.show()
 
 # plt.scatter(df.Denom, df.Drate)
 # plt.show()
@@ -23,10 +23,10 @@ print(type(df))
 # plt.show()
 
 # Create a linear model
-regr = linear_model.LinearRegression()
+# regr = linear_model.LinearRegression()
 
 # Train the model using the training sets
-regr.fit(df.Drate, df.EthnicCode)
+# regr.fit(df.Drate, df.EthnicCode)
 
 # predictions = regr.predict(df)
 
