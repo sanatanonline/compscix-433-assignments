@@ -3,7 +3,7 @@
 """
 Name : Sanatan Das
 Email : sanatanonline@gmail.com
-GitHub URL : https://github.com/sanatanonline/compscix-433-assignments
+GitHub URL : https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_3/__hw_2__.py
 
 """
 
