@@ -1,25 +1,16 @@
-import tensorflow as tf
-import os
+from numpy import *
+import matplotlib.pyplot as plt
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-sess = tf.Session()
-
-a = 92
-
-print(type(a))
-
-a = tf.convert_to_tensor(a, dtype=tf.float16)
-
-print(type(a))
-
-b = tf.constant(92)
-
-print(type(a))
-
-print(a == b)
-
-sess.close()
-
-
-
+x = arange(0.,10,0.3)
+a = sin(x); b = cos(x);
+c = exp(x/10); d = exp(-x/10)
+plt.plot(x,a,'b-',label='sine')
+plt.plot(x,b,'r--',label='cosine')
+plt.plot(x,c,'c-.',label='exp(+x)')
+plt.plot(x,d,'gx-', linewidth=1.5, label='exp(-x)')
+plt.legend(loc='upper le]')
+plt.grid()
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.pause(1)
+plt.show()

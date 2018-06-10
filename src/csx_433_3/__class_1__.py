@@ -1,6 +1,9 @@
-import numpy as np
+print("Hello World!")
 
-a = ([1, 2, 3])
+a = 5
+b = 6
 
-shape = np.shape(a)
-print(shape)
+c = a+b
+
+print(c)
+print(type(c))
