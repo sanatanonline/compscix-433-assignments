@@ -34,7 +34,7 @@ plb.title('Plot of sin, cos functions')
 plb.plot(D, plb.sin(D), color="blue", linewidth=1.5, linestyle='-', label="sin")
 
 plb.hold(True)
-plb.plot(D, plb.cos(D), color="black", linewidth=1.2, linestyle='-.', label="cos")
+plb.plot(D, plb.cos(D), color="red", linewidth=1.2, linestyle='-.', label="cos")
 
 plb.grid()
 
