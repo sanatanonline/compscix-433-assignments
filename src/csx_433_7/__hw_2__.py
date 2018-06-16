@@ -51,7 +51,8 @@ with tf.Session() as sess:
     # Evaluate tensor of random 100 numbers. Output is numpy array
     a = a_tensor.eval()
     # Run the session for final output
-    sess.run(f, feed_dict={A: a})
+    val = sess.run(f, feed_dict={A: a})
+    print(val)
 
 sess.graph.as_graph_def()
 # Write the graph to 'hw2_graph' directory
