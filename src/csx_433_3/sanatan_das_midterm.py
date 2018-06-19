@@ -50,10 +50,10 @@ print('The original array is: ', A)
 # Print SMA result with default window (which is 2)
 print('Moving average result is B:', B)
 # Print the window width for B
-print('Window width for B:', 12-len(B)+1)
+print('Window width for B:', 12-len(B) + 1)
 
 # Print SMA result with window size of 4
-print('Moving average result is C:', C)
+print('Moving average result for C:', C)
 # Print the window width for C
 print('Window width for C:', 12-len(C) + 1)
 
@@ -99,8 +99,6 @@ plb.legend(loc='upper right')
 
 # Show the plot
 plb.show()
-
-
 
 
 
