@@ -1,0 +1,36 @@
+Project Title: Filtering and Visual Analysis of an Audio Signal using Python
+--------------------------------------------------------------------------------------------
+
+Name: Sanatan Das
+Email: sanatanonline@gmail.com
+GitHub: https://github.com/sanatanonline/compscix-433-assignments/tree/master/src/csx_433_3
+
+--------------------------------------------------------------------------------------------
+
+Summary:
+
+This project builds a low pass and high pass filter to apply on an audio input file.
+In this process, we remove a certain range of frequencies from the input audio signal.
+After applying the filter, we write it to an output audio file.
+We plot the amplitudes and frequencies of the input and output audio file and compare them.
+
+
+Procedure:
+
+1. Read in audio (input)
+2. Apply STFT (Window and FFT)
+3. Remove a range of frequencies we want out
+4. Apply Inverse STFT (to re-synthesize)
+5. Write new audio (output)
+
+
+Development Platform/System and Library Versions
+
+1. Operating System: Ubuntu 18.04 LTS 64 bit (Intel core i7 processor)
+2. Python: 3.6
+3. Pycharm : 2018.1.4 Community Edition
+4. numpy: 1.14.3
+5. scipy: 1.1.0
+6. matplotlob: 2.2.2
+
+
