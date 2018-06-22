@@ -1,6 +1,8 @@
 import tensorflow as tf
 
-a = tf.constant(5)
+v = tf.random_normal([8], mean=-1, stddev=2)
 
-print(a)
+sess = tf.Session()
+
+print(sess.run(v))
 
