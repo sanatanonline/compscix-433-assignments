@@ -14,7 +14,7 @@ https://github.com/sanatanonline/compscix-433-assignments/tree/master/src/csx_43
 The completed homework assignments, midterm, project work and class practices can be found here:
 https://github.com/sanatanonline/compscix-433-assignments/tree/master/src/csx_433_7
 
-## platorm/system and installation versions
+## platform/system and installation versions
 
 All the codes above was developed and tested using the following software stack
 
