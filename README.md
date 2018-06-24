@@ -2,7 +2,7 @@
 
 Welcome
 
-This file introduces you to compscix-433-assignments. It has two parts.
+This file introduces you to compscix-433-assignments, homeworks, midterm anf final projects. It has two parts.
 
 ### COMPSCI X433.3 - Python for Data Analysis and Scientific Computing
 
