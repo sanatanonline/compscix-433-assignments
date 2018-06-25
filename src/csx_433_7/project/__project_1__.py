@@ -1,3 +1,4 @@
+# Import the libraries numpy, matplotlib, tensorflow and metrics from sklearn
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -7,7 +8,7 @@ from sklearn import metrics
 # -------------------------SECTION 1 : Useful Constants------------------------------------
 
 
-# Those are separate normalised input features for the neural network
+# These are separate normalised input features for the neural network
 INPUT_SIGNAL_TYPES = [
     "body_acc_x_",
     "body_acc_y_",
@@ -62,14 +63,14 @@ X_test_signals_paths = [
     DATASET_PATH + TEST + "Inertial Signals/" + signal + "test.txt" for signal in INPUT_SIGNAL_TYPES
 ]
 
-X_train = load_x(X_train_signals_paths)
-X_test = load_x(X_test_signals_paths)
+x_train = load_x(X_train_signals_paths)
+x_test = load_x(X_test_signals_paths)
 
-if X_train.size != 0:
-    print("X-train data is loaded successfully")
+if x_train.size != 0:
+    print("x-train data is loaded successfully")
 
-if X_test.size != 0:
-    print("X-test data is loaded successfully")
+if x_test.size != 0:
+    print("x-test data is loaded successfully")
 
 
 # Load "y" (the neural network's training and testing outputs)
@@ -95,20 +96,20 @@ y_train = load_y(y_train_path)
 y_test = load_y(y_test_path)
 
 if y_train.size != 0:
-    print("Y-train data is loaded successfully")
+    print("y-train data is loaded successfully")
 
 if y_test.size != 0:
-    print("Y-test data is loaded successfully")
+    print("y-test data is loaded successfully")
 
 
 # -------------------------SECTION 3 : Additional Parameters-----------------------------------
 
 # Input Data
 
-training_data_count = len(X_train)  # 7352 training series (with 50% overlap between each serie)
-test_data_count = len(X_test)  # 2947 testing series
-n_steps = len(X_train[0])  # 128 timesteps per series
-n_input = len(X_train[0][0])  # 9 input parameters per timestep
+training_data_count = len(x_train)  # 7352 training series (with 50% overlap between each serie)
+test_data_count = len(x_test)  # 2947 testing series
+n_steps = len(x_train[0])  # 128 timesteps per series
+n_input = len(x_train[0][0])  # 9 input parameters per timestep
 
 
 # LSTM Neural Network's internal structure
@@ -119,42 +120,44 @@ n_classes = 6  # Total classes (should go up, or should go down)
 
 # Training
 
+# Initialize learning rate
 learning_rate = 0.0025
+# Loss amount
 lambda_loss_amount = 0.0015
-training_iters = training_data_count * 30  # Loop 300 times on the dataset
+# Loop 300 times on the dataset
+training_iters = training_data_count * 300
+# Batch size
 batch_size = 1500
-display_iter = 30000  # To show test set accuracy during training
+# To show test set accuracy during training
+display_iter = 30000
 
 
 # Some debugging info
 
 print("Some useful info to get an insight on dataset's shape and normalisation:")
 print("(X shape, y shape, every X's mean, every X's standard deviation)")
-print(X_test.shape, y_test.shape, np.mean(X_test), np.std(X_test))
+print(x_test.shape, y_test.shape, np.mean(x_test), np.std(x_test))
 print("The dataset is therefore properly normalised, as expected, but not yet one-hot encoded.")
 
 
 # -------------------------SECTION 4 : Utility functions for training-----------------------------------
 
 
-def lstm_rnn(_X, _weights, _biases):
+def lstm_rnn(_x, _weights, _biases):
     # Function returns a tensorflow LSTM (RNN) artificial neural network from given parameters.
     # Moreover, two LSTM cells are stacked which adds deepness to the neural network.
-    # Note, some code of this notebook is inspired from an slightly different
-    # RNN architecture used on another dataset, some of the credits goes to
-    # "aymericdamien" under the MIT license.
 
     # (NOTE: This step could be greatly optimised by shaping the dataset once
     # input shape: (batch_size, n_steps, n_input)
-    _X = tf.transpose(_X, [1, 0, 2])  # permute n_steps and batch_size
+    _x = tf.transpose(_x, [1, 0, 2])  # permute n_steps and batch_size
     # Reshape to prepare input to hidden activation
-    _X = tf.reshape(_X, [-1, n_input])
+    _x = tf.reshape(_x, [-1, n_input])
     # new shape: (n_steps*batch_size, n_input)
 
     # Linear activation
-    _X = tf.nn.relu(tf.matmul(_X, _weights['hidden']) + _biases['hidden'])
+    _x = tf.nn.relu(tf.matmul(_x, _weights['hidden']) + _biases['hidden'])
     # Split data because rnn cell needs a list of inputs for the RNN inner loop
-    _X = tf.split(_X, n_steps, 0)
+    _x = tf.split(_x, n_steps, 0)
     # new shape: n_steps * (batch_size, n_hidden)
 
     # Define two stacked LSTM cells (two recurrent layers deep) with tensorflow
@@ -162,7 +165,7 @@ def lstm_rnn(_X, _weights, _biases):
     lstm_cell_2 = tf.contrib.rnn.BasicLSTMCell(n_hidden, forget_bias=1.0, state_is_tuple=True)
     lstm_cells = tf.contrib.rnn.MultiRNNCell([lstm_cell_1, lstm_cell_2], state_is_tuple=True)
     # Get LSTM cell output
-    outputs, states = tf.contrib.rnn.static_rnn(lstm_cells, _X, dtype=tf.float32)
+    outputs, states = tf.contrib.rnn.static_rnn(lstm_cells, _x, dtype=tf.float32)
 
     # Get last time step's output feature for a "many to one" style classifier,
     # as in the image describing RNNs at the top of this page
@@ -172,16 +175,15 @@ def lstm_rnn(_X, _weights, _biases):
     return tf.matmul(lstm_last_output, _weights['out']) + _biases['out']
 
 
-def extract_batch_size(_train, step, batch_size):
+def extract_batch_size(_train, input_step, input_batch_size):
     # Function to fetch a "batch_size" amount of data from "(X|y)_train" data.
-
     shape = list(_train.shape)
-    shape[0] = batch_size
+    shape[0] = input_batch_size
     batch_s = np.empty(shape)
 
-    for i in range(batch_size):
+    for i in range(input_batch_size):
         # Loop index
-        index = ((step - 1) * batch_size + i) % len(_train)
+        index = ((input_step - 1) * input_batch_size + i) % len(_train)
         batch_s[i] = _train[index]
 
     return batch_s
@@ -193,11 +195,11 @@ def one_hot(y_):
 
     y_ = y_.reshape(len(y_))
     n_values = int(np.max(y_)) + 1
-    return np.eye(n_values)[np.array(y_, dtype=np.int32)]  # Returns FLOATS
+    # Returns FLOATS
+    return np.eye(n_values)[np.array(y_, dtype=np.int32)]
 
 
 # -------------------------SECTION 5 : Utility functions for training-----------------------------------
-
 
 # Graph input/output
 x = tf.placeholder(tf.float32, [None, n_steps, n_input])
@@ -205,7 +207,7 @@ y = tf.placeholder(tf.float32, [None, n_classes])
 
 # Graph weights
 weights = {
-    'hidden': tf.Variable(tf.random_normal([n_input, n_hidden])), # Hidden layer weights
+    'hidden': tf.Variable(tf.random_normal([n_input, n_hidden])),  # Hidden layer weights
     'out': tf.Variable(tf.random_normal([n_hidden, n_classes], mean=1.0))
 }
 biases = {
@@ -218,8 +220,8 @@ pred = lstm_rnn(x, weights, biases)
 # Loss, optimizer and evaluation
 l2 = lambda_loss_amount * sum(
     tf.nn.l2_loss(tf_var) for tf_var in tf.trainable_variables()
-) # L2 loss prevents this overkill neural network to over fit the data
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=pred)) + l2  # Softmax loss
+)  # L2 loss prevents this overkill neural network to over fit the data
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=y, logits=pred)) + l2  # Softmax loss
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)  # Adam Optimizer
 
 correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
@@ -243,7 +245,7 @@ sess.run(init)
 # Perform Training steps with "batch_size" amount of example data at each loop
 step = 1
 while step * batch_size <= training_iters:
-    batch_xs = extract_batch_size(X_train, step, batch_size)
+    batch_xs = extract_batch_size(x_train, step, batch_size)
     batch_ys = one_hot(extract_batch_size(y_train, step, batch_size))
 
     # Fit training using batch data
@@ -268,7 +270,7 @@ while step * batch_size <= training_iters:
         loss, acc = sess.run(
             [cost, accuracy],
             feed_dict={
-                x: X_test,
+                x: x_test,
                 y: one_hot(y_test)
             }
         )
@@ -288,7 +290,7 @@ print("Optimization Finished!")
 one_hot_predictions, accuracy, final_loss = sess.run(
     [pred, accuracy, cost],
     feed_dict={
-        x: X_test,
+        x: x_test,
         y: one_hot(y_test)
     }
 )
@@ -378,18 +380,3 @@ plt.tight_layout()
 plt.ylabel('True label')
 plt.xlabel('Predicted label')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

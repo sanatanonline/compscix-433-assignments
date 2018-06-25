@@ -81,9 +81,9 @@ def filter_audio(filter_input_signal, filter_sample_rate, input_filter_window, f
 # Input/Output Section
 
 # Input audio file for filtering
-infile = "../audio_files/ohm_scale.wav"
+infile = "audio_files/ohm_scale.wav"
 # Output audio file after filtering
-outfile = "../audio_files/high_pass_out.wav"
+outfile = "audio_files/high_pass_out.wav"
 # Define window size
 window_size = 256
 # Define minimum frequency
