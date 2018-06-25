@@ -125,7 +125,7 @@ learning_rate = 0.0025
 # Loss amount
 lambda_loss_amount = 0.0015
 # Loop 300 times on the dataset
-training_iters = training_data_count * 300
+training_iters = training_data_count * 3
 # Batch size
 batch_size = 1500
 # To show test set accuracy during training
@@ -176,7 +176,7 @@ def lstm_rnn(_x, _weights, _biases):
 
 
 def extract_batch_size(_train, input_step, input_batch_size):
-    # Function to fetch a "batch_size" amount of data from "(X|y)_train" data.
+    # Function to fetch a "batch_size" amount of data from "(x|y)_train" data.
     shape = list(_train.shape)
     shape[0] = input_batch_size
     batch_s = np.empty(shape)
@@ -195,7 +195,7 @@ def one_hot(y_):
 
     y_ = y_.reshape(len(y_))
     n_values = int(np.max(y_)) + 1
-    # Returns FLOATS
+    # Returns floats
     return np.eye(n_values)[np.array(y_, dtype=np.int32)]
 
 
@@ -307,7 +307,7 @@ print("FINAL RESULT: " +
 
 # Progress over iterations
 font = {
-    'family': 'Bitstream Vera Sans',
+    'family': 'DejaVu Sans',
     'weight': 'bold',
     'size': 18
 }
