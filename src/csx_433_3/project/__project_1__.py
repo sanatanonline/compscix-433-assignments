@@ -1,7 +1,7 @@
 """
 Name:           Sanatan Das
 Email:          sanatanonline@gmail.com
-GitHub URL:     https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_3/__project_1__.py
+GitHub URL:     https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_3/__Human_Activity_Recognition__.py
 Final Project:  COMPSCI X433.3 - Python for Data Analysis and Scientific Computing
 Project Title:  Audio Signal Filtering using Python (numpy, scipy, matplotlib)
 
