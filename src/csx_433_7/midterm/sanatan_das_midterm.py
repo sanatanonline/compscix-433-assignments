@@ -1,7 +1,7 @@
 """
 Name : Sanatan Das
 Email : sanatanonline@gmail.com
-GitHub URL : https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_7/sanatan_das_midterm_tf.py
+GitHub URL : https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_7/sanatan_das_midterm.py
 Assignment : Midterm
 
 """
