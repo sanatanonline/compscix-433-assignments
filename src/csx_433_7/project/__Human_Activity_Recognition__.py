@@ -1,3 +1,17 @@
+"""
+Final Project for COMPSCI X433.7 - Machine Learning With TensorFlow (University of California Berkeley Extension)
+------------------------------------------------------------------------------------------------------------------------
+
+Team Members      :   1) Kannu Priya Arora(kannupriya@gmail.com) 2) Sanatan Das(sanatanonline@gmail.com)
+
+GitHub URL       :   https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_7
+
+Project Title   :   Human Activity Recognition (Multi-classification using LSTM RNN
+
+"""
+
+# SECTION 1 : IMPORT THE LIBRARIES
+
 # Import the libraries numpy, matplotlib, tensorflow and metrics from sklearn
 import numpy as np
 import matplotlib
@@ -5,7 +19,8 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from sklearn import metrics
 
-# -------------------------SECTION 1 : Useful Constants------------------------------------
+
+# SECTION 2 : USEFUL CONSTANTS
 
 
 # These are separate normalised input features for the neural network
@@ -36,7 +51,8 @@ DATASET_PATH = "HAR_data/"
 TRAIN = "train/"
 TEST = "test/"
 
-# -------------------------SECTION 2 : Load data------------------------------------
+
+# SECTION 3 : LOAD THE DATA
 
 
 # Load "X" (the neural network's training and testing inputs)
@@ -102,7 +118,8 @@ if y_test.size != 0:
     print("y-test data is loaded successfully")
 
 
-# -------------------------SECTION 3 : Additional Parameters-----------------------------------
+# SECTION 4 : ADDITIONAL PARAMETERS
+
 
 # Input Data
 
@@ -140,7 +157,7 @@ print(x_test.shape, y_test.shape, np.mean(x_test), np.std(x_test))
 print("The dataset is therefore properly normalised, as expected, but not yet one-hot encoded.")
 
 
-# -------------------------SECTION 4 : Utility functions for training-----------------------------------
+# SECTION 5 : UTILITY FUNCTIONS FOR TRAINING
 
 
 def lstm_rnn(_x, _weights, _biases):
@@ -199,7 +216,7 @@ def one_hot(y_):
     return np.eye(n_values)[np.array(y_, dtype=np.int32)]
 
 
-# -------------------------SECTION 5 : Utility functions for training-----------------------------------
+# SECTION 6 : BUILD THE NEURAL NETWORK
 
 # Graph input/output
 x = tf.placeholder(tf.float32, [None, n_steps, n_input])
@@ -228,7 +245,7 @@ correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
 
-# -------------------------SECTION 5 : train the neural network-----------------------------------
+# SECTION 7 : TRAIN THE NEURAL NETWORK
 
 
 # To keep track of training's performance
@@ -282,6 +299,8 @@ while step * batch_size <= training_iters:
 
     step += 1
 
+    writer = tf.summary.FileWriter('./project_graph', sess.graph)
+
 print("Optimization Finished!")
 
 
@@ -303,7 +322,7 @@ print("FINAL RESULT: " +
       ", Accuracy = {}".format(accuracy))
 
 
-# -------------------------SECTION 6 : Visualization-----------------------------------
+# SECTION 8 : VISUALIZATION (TRAINING and TESTING)
 
 # Progress over iterations
 font = {
@@ -336,7 +355,7 @@ plt.xlabel('Training iteration')
 plt.show()
 
 
-# -------------------------SECTION 7 : Multi-class confusion matrix-----------------------------------
+# SECTION 9 : MULTI-CLASS CONFUSION MATRIX
 
 
 # Results
