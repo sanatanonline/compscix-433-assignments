@@ -1,7 +1,8 @@
 """
-Name : Sanatan Das
-Email : sanatanonline@gmail.com
-GitHub URL : https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_3/sanatan_das_midterm_python.py
+Name        : Sanatan Das
+Email       : sanatanonline@gmail.com
+GitHub URL  : https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_3
+Assignment  : Midterm
 
 """
 
@@ -24,7 +25,7 @@ print(A)
 
 
 # Simple moving average function
-def func_simple_moving_average(input_arr, win=2): # window width default value is 2
+def func_simple_moving_average(input_arr, win=2):  # window width default value is 2
     moving_average = np.cumsum(input_arr, dtype=float)
     moving_average[win:] = moving_average[win:] - moving_average[:-win]
     cumulative_moving_average = moving_average[win-1:]/win
@@ -99,11 +100,3 @@ plb.legend(loc='upper right')
 
 # Show the plot
 plb.show()
-
-
-
-
-
-
-
-
