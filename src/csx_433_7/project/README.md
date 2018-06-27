@@ -11,6 +11,12 @@ https://github.com/sanatanonline/compscix-433-assignments/tree/master/src/csx_43
 
 Once you go to this location, please read the instractions carefully and follow the steps to run the code. The following environments and libraries are used while writing and executing the code. If you use different versions of the software, the code might not work.
 
+## team members
+
+* Kannu Priya Arora (priya.kannu@gmail.com)
+
+* Sanatan Das (sanatanonline@gmail.com)
+
 ## platform/system and installation versions (pre-requisites to run the code)
 
 All the codes above was developed and tested using the following software stack
@@ -21,7 +27,7 @@ All the codes above was developed and tested using the following software stack
 
 **Pycharm** : 2018.1.4 Community Edition
 
-**jupyter notebook 5.5.0
+**jupyter notebook** 5.5.0
 
 **numpy**: 1.14.3
 
@@ -37,8 +43,10 @@ The training and testing data set is large enough and we have not uploaded to th
 
 https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip
 
-Unzip the data and copy it to the folder "HAR_data". Please refer to the "load data" section of the python module if you find any issue loading the data.
+Unzip the data and copy the content to the folder "HAR_data". Please refer to the "load data" section of the python module if you find any issue loading the data.
 
 ### .py and .pynb code
 
-We have tested and run the .py file. The notebook version is created for presentation. Althouh, the pynb file has same code as the .py file, but we have not tested it.
+We have tested and run the code using the .py file. The notebook version is created for presentation. Althouh, the .pynb file has same code as the .py file, but we have not tested it.
+
+Thank you
