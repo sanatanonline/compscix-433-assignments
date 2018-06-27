@@ -101,12 +101,12 @@ print("minimum frequency is:", min_freq)
 # Plot the sound wave amplitude - time (in seconds) graph before applying filter
 setup_graph(title='Sound wave (Before)', x_label='time (in seconds)', y_label='amplitude', fig_size=(14, 7))
 _ = plt.plot(input_signal)
-plt.show()
+# plt.show()
 
 # Plot the spectrogram (frequency - time (in seconds)) graph of the input audio signal
 setup_graph(title='Spectrogram (Before)', x_label='time (in seconds)', y_label='frequency', fig_size=(14, 7))
 _ = plt.specgram(input_signal, Fs=sample_rate)
-plt.show()
+# plt.show()
 
 # Create filter window
 filter_window = high_pass_filter(min_freq, window_size, sample_rate)
@@ -122,9 +122,9 @@ write_audio_file(outfile, resynth, sample_rate)
 # Plot the sound wave amplitude - time (in seconds) graph after applying filter
 setup_graph(title='Sound wave (After)', x_label='time (in seconds)', y_label='amplitude', fig_size=(14, 7))
 _ = plt.plot(resynth)
-plt.show()
+# plt.show()
 
 # Plot the spectrogram (frequency - time (in seconds)) graph of the input audio signal
 setup_graph(title='Spectrogram (After)', x_label='time (in seconds)', y_label='frequency', fig_size=(14, 7))
 _ = plt.specgram(resynth, Fs=sample_rate)
-plt.show()
+# plt.show()
