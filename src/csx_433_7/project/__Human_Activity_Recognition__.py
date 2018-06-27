@@ -2,7 +2,7 @@
 Final Project for COMPSCI X433.7 - Machine Learning With TensorFlow (University of California Berkeley Extension)
 ------------------------------------------------------------------------------------------------------------------------
 
-Team Members      :   1) Kannu Priya Arora(kannupriya@gmail.com) 2) Sanatan Das(sanatanonline@gmail.com)
+Team Members      :   1) Kannu Priya Arora(priya.kannu@gmail.com) 2) Sanatan Das(sanatanonline@gmail.com)
 
 GitHub URL       :   https://github.com/sanatanonline/compscix-433-assignments/blob/master/src/csx_433_7
 
