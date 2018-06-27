@@ -27,9 +27,10 @@ All the codes above was developed and tested using the following software stack.
 
 **numpy**: 1.14.3
 
+**scipy**: 1.1.0
+
 **matplotlob**: 2.2.2
 
-**scipy**: 1.1.0
 
 ### data
 
